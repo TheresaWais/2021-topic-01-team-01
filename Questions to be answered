@@ -1,0 +1,18 @@
+Add text here:
+1 Correlation between applied drug and cytotoxic effect on all cancer cell lines
+  - PCA of whole data set
+  - Regression model 
+    (Determine correaltion of disulfiram treatment on metallothionin expressing cells)
+    
+2 Correlation between applied drugs and cytotoxic effect on lung cancer cells
+  - Can we separate lung cancer subtypes by Principal components / Do different lung cancer lubtypes show different drug sensitivity?
+  - Which drugs inhibit lung cancer proliferation best?
+  - Is cytotoxic effect dose dependent?
+  - Does dose dependency correlate with drug class? (oncological-targeted / non-oncological / chemotherapeutics)
+  
+3 Can we define certain genetic features that define lung cancer subtypes?
+  - Can we find overexpressed / downregulated genes?
+  - Are gene copy numbers altered in certain cell lines?
+  - Which genes are essential for cancer proliferation?
+
+4 Is the sensitivity to certain drugs related to the genetic profile of lung cancer cells?
