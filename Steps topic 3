@@ -1,0 +1,14 @@
+# Topic 3: Can we find certain genetic features that define lung cancer subtypes?​
+weeks:
+members:
+steps:
+  1. filter prism.exp, prism.cnv, prsim.achilles for NSCLC, SCLC, mesothelioma
+  (2. cleaning and Z-Transformation)
+  3. define thresholds
+    prism.exp: x>T1(hoch): overexpression
+               x<T2(tief): downregulated
+    prism.cnv: x>2 amplified
+               x<2 deleted
+    prism.achilles: smalllest values
+  4. use thresholds for all 3 lung cancer subtypes to find genetic features, which define subtypes
+  5. Compare genetic features of the subtypes (scatter plats for all 3 datasets, subtypes-> different colours)
