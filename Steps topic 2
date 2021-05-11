@@ -1,1 +1,46 @@
+2 Correlation between applied drugs and cytotoxic effect on lung cancer cells
 
+  - Can we separate lung cancer subtypes by Principal components / Do different lung cancer lubtypes show different drug sensitivity?
+      -> steps:
+                . filter prism data set for lung cancer cell lines (use prism.cl)
+                . run Principal component analysis (aim: reduce the high dimensional data set [a lot of drugs] to less drugs that are important for drug response)
+                . show results in plot, where the different sensitivity values for each cell lung cancer subtype are represented in 3 different colours 
+                  ( aim: investigate whether different lung cancer subtypes show different drug sensitivity)
+                  
+  - Which drugs inhibit lung cancer proliferation best?
+      -> steps:
+                . filter cell lines in prism data set for one lung cancer subtype (use prism.cl)
+                . use function "apply" to find out which values are lower than the treshold 0.3 (meaning that these medicaments led to dying of cancer cell lines)
+                . you get different medicaments in different doses
+                . take those 5 medicaments as most effective ones, that showed the 5 lowes values 
+                
+                -> select 5 best medicaments for each lung cancer subtype -> maximum 15 medicaments for further research 
+                
+                [problem might be: 
+                          - maybe some medicaments were only effective on cells because the dose was a lethal dose
+                          - maybe only take those medicaments for the selected ones, that have an effect for minimum 3 different doses; but this predicts dose dependency!]
+                          
+                solution: investigate whether there´s dose dependency 
+                
+                     
+                
+  - Is cytotoxic effect dose dependent?
+      -> steps:
+                . create scatter plots for all maximum 15 drugs (x-axis: 8 different doses; y-axis: entries of prism data set (sensitivity values)
+                . assume that there is dose dependency if the points show linear or asymptotic, S-like shape
+                
+                
+ - Does dose dependency correlate with drug class? (oncological-targeted / non-oncological / chemotherapeutics)
+      -> steps:
+                . take maximum 15 drugs:
+                    - check to which drug class they belong to (oncological-targeted / non-oncological / chemotherapeutics)
+                    - calculate percentage values for the table for chi-squared test (test for correlation between two categorical data)
+                       rows: dose dependency YES / NO
+                       columns: drug classes
+                   - run chi-squared test in R
+                   
+                   [maybe there come up problems if some durg classes are not represented by the 15 selected drugs] 
+                   solution :                   
+                  . take all drugs that are effective 
+                  . create scatter plots for all of them
+                  . then calculate percentage values for chi-squared test
