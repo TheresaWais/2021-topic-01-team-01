@@ -1,1 +1,18 @@
+Topic 4: Is the sensitivity to certain drugs related to the genetic profile of lung cancer cells?
 
+1. Selection of drug targets
+  - in Prism.treat, column: target
+  - for NA: internet research (?), later -> set hypothesis of possible MOA
+  
+2. Comparison of targets with genetic profiles of sensitive cell lines
+  - is drug target similar to oncogene of a sensitive cell or are they connected, e.g. downstream protein of signaling pathway (internet research)
+  - are one or more proteins affected by drug? 
+  -> find out with knockout data/gene expression of similar genes in different cell lines sensitive to same drug
+ 
+3.Identification of mechansim-of-action (MOA)
+  - with previous comparison and internet research setting a hypothesis about a MOA
+  
+4. Visualization and conclusion
+  - depending on the extent and "quality" of results we gain from topic three 
+  - we want to visualize the results with which we underline our MOA-hypothesis, e.g. with plots
+  - last step is a conclusion about our results and in which way they contribute to drug repurposing
