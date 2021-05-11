@@ -1,6 +1,6 @@
 2 Correlation between applied drugs and cytotoxic effect on lung cancer cells
 
-  - Can we separate lung cancer subtypes by Principal components / Do different lung cancer lubtypes show different drug sensitivity?
+  - Can we separate lung cancer subtypes by Principal components / Do different lung cancer subtypes show different drug sensitivity?
       -> steps:
                 . filter prism data set for lung cancer cell lines (use prism.cl)
                 . run Principal component analysis (aim: reduce the high dimensional data set [a lot of drugs] to less drugs that are important for drug response)
