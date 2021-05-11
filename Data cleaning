@@ -1,5 +1,5 @@
 # 2021-topic-01-team-01
-prsim dataset: - define threshold t: #NAs>t -> delete wohole colum
+prsim dataset: - #NAs per row > 90% -> delete whole row
                - others: use is.na
-prism.achilles: delete NAs, use is.na
+prism.achilles: delete all rows(3) with NAs
 prism.exp: Z-transformation
