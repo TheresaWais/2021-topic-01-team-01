@@ -1,7 +1,7 @@
 Topic 4: Is the sensitivity to certain drugs related to the genetic profile of lung cancer cells?
 
 1. Selection of drug targets
-  - in Prism.treat, column: target
+  - in Prism.treat, column: target, moa
   - for NA: internet research (?), later -> set hypothesis of possible MOA
   
 2. Comparison of targets with genetic profiles of sensitive cell lines
