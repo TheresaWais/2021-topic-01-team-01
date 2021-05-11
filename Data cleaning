@@ -1,0 +1,5 @@
+# 2021-topic-01-team-01
+prsim dataset: - define threshold t: #NAs>t -> delete wohole colum
+               - others: use is.na
+prism.achilles: delete NAs, use is.na
+prism.exp: Z-transformation
