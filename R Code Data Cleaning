@@ -1,1 +1,61 @@
 Here our R-Code for data cleaning has to show up:
+# working with prism.achilles data set
+## delete all 3 rows with NAs 
+
+sum(is.na(prism.achilles))
+n=c(is.na(prism.achilles))
+
+rmv.rows=apply(prism.achilles,1,function(x){sum(is.na(x))})
+
+pa_new=prism.achilles[-which(rmv.rows>0),]
+dim(pa_new)
+#-> 3 rows have been removed
+#-> dimension of achilles pa_new: 347, 18119
+
+# check whether there might be NAs left?
+sum(is.na(pa_new))
+
+    #!!!!!!!!!!!!!!!!!! new prism.achilles data set:       pa_new
+```
+
+
+```{r}
+# Z-transformation with prism.exp data set
+# mean values of each column 
+means=c(apply(prism.exp, 2, function(x){mean(x)}))
+means
+
+# standard deviation of each row
+sds=c(apply(prism.exp, 2, function(x){sd(x)}))
+sds
+
+```
+
+```{r}
+# use function scale()for z-transformation
+
+# use function scale for first column
+
+s=scale(prism.exp[,1])
+s
+# 
+```
+
+
+```{r}
+# use formula for first column
+n1=prism.exp[1,1]
+m1=means[1]
+sd1=sds[1]
+
+(n1-m1)/sd1
+#-> with function scale z transformation does work
+
+
+```
+
+```{r}
+# try wirh transforms()
+transformx(prism.exp, scale.type="unit.sd", x.cernter, x.scale)
+```
+
