@@ -21,7 +21,11 @@ sum(is.na(pa_new))
 
 ```{r}
 # Z-transformation with prism.exp data set
-# mean values of each column 
+Zprism.exp = scale(prism.exp)
+# new prism.exp -> Zprism.exp
+
+# by formula
+(# mean values of each column 
 means=c(apply(prism.exp, 2, function(x){mean(x)}))
 means
 
@@ -49,7 +53,7 @@ m1=means[1]
 sd1=sds[1]
 
 (n1-m1)/sd1
-#-> with function scale z transformation does work
+#-> with function scale z transformation does work)
 
 
 ```
