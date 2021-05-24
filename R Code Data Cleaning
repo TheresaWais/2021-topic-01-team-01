@@ -63,3 +63,21 @@ sd1=sds[1]
 transformx(prism.exp, scale.type="unit.sd", x.cernter, x.scale)
 ```
 
+# prism
+### NA/row  > 50 % -> delete whole row (5x)
+### In all other cases: utilize na.rm
+```{r}
+sum(is.na(prism))
+NAs.per.row = apply(prism,1,function(x){sum(is.na(x))})
+NAs.per.row
+prism.cleaned = prism[-which(NAs.per.row >=0.5*ncol(prism)),]
+prism.cleaned
+#new prism dataset = prism.cleaned !!!
+dim(prism)
+dim(prism.cleaned)
+# 5 rows deleted
+#proof: 
+ncol =ncol(prism)
+ncol*0.5
+sum(NAs.per.row >= 5584)
+```
