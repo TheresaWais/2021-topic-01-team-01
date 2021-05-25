@@ -33,6 +33,7 @@ plot.disease
 
 # Creating the bar plot
 ```{r}
+# create barplot of disease areas of drugs used for drug repurposing
 barplot(table(plot.disease),
         xlab = "Disease area of drugs",
         ylab = "Amount of drugs for given disease areas",
@@ -42,3 +43,25 @@ barplot(table(plot.disease),
 
 ## Prism.snv
 # Barplot Arten der Mutation
+```{r}
+# select columns of interest out of prism.snv
+mutation.types = prism.snv[, "Variant_Type"]
+mutation.class = prism.snv[, "Variant_Classification"]
+
+# remove NAs
+mutation.types.clean = na.exclude(mutation.types)
+mutation.class.clean = na.exclude(mutation.class)
+
+# Barplot Mutation Types
+barplot(table(mutation.types.clean),
+        xlab = "Mutation Types",
+        ylab = "Counts",
+        main = "Distribution of Mutations in given genes of Prism.snv")
+
+# Barplot Mutation Classes
+barplot(table(mutation.class.clean),
+        xlab = "Mutation Classes",
+        ylab = "Counts",
+        main = "Distribution of Mutation Classes in given genes of Prism.snv")
+```
+
