@@ -1,0 +1,15 @@
+---
+title: "descriptive statistic"
+author: "Lena Wickenhäuser"
+date: "5/25/2021"
+output: html_document
+---
+### Descriptive Statistic
+
+## Prism.treat
+# Drug Types barplot
+
+```{r}
+
+```
+
