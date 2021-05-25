@@ -1,5 +1,7 @@
 ```{r}
 Here our R-Code for data cleaning has to show up:
+# PRISM.ACHILLES
+
 # working with prism.achilles data set
 ## delete all 3 rows with NAs 
 
@@ -16,11 +18,13 @@ dim(pa_new)
 # check whether there might be NAs left?
 sum(is.na(pa_new))
 
-    #!!!!!!!!!!!!!!!!!! new prism.achilles data set:       pa_new
+# new prism.achilles data set:       pa_new
 ```
 
 
 ```{r}
+# PRISM.EXP
+
 # Z-transformation with prism.exp data set
 Zprism.exp = scale(prism.exp)
 # new prism.exp -> Zprism.exp
@@ -50,6 +54,8 @@ Zprism.exp[1,1]
 
 ### -> function scale() does work for Z-transformation
 
+# new prism.exp data set:        Zprism.exp
+
 ```
 
 
@@ -57,6 +63,8 @@ Zprism.exp[1,1]
 ### NA/row  > 50 % -> delete whole row (5x)
 ### In all other cases: utilize na.rm
 ```{r}
+# PRISM
+
 sum(is.na(prism))
 NAs.per.row = apply(prism,1,function(x){sum(is.na(x))})
 NAs.per.row
@@ -70,6 +78,14 @@ dim(prism.cleaned)
 ncol =ncol(prism)
 ncol*0.5
 sum(NAs.per.row >= 5584)
+
+# new prism data set:        prism.cleaned
 ```
+```{r}
+# PRISM.CNV
+
+# check for NAs:
+sum(is.na(prism.cnv))
+# -> no NAS !
 ```
 
