@@ -1,8 +1,78 @@
-# 2021-topic-01-team-01
-prsim dataset: #NAs per row > 50% -> delete whole row
-               others: is.na
-prism.achilles: delete all rows(3) with NAs: apply(prism.achilles,1,function(x){sum(is.na(x))})
-                  cell lines: ACH-000836
-                              ACH-000901
-                              ACH-000939
-prism.exp: Z-transformation
+```{r}
+#Here our R-Code for data cleaning has to show up:
+# working with prism.achilles data set
+## delete all 3 rows with NAs 
+
+sum(is.na(prism.achilles))
+n=c(is.na(prism.achilles))
+
+rmv.rows=apply(prism.achilles,1,function(x){sum(is.na(x))})
+
+pa_new=prism.achilles[-which(rmv.rows>0),]
+dim(pa_new)
+#-> 3 rows have been removed
+#-> dimension of achilles pa_new: 347, 18119
+
+# check whether there might be NAs left?
+sum(is.na(pa_new))
+
+    #!!!!!!!!!!!!!!!!!! new prism.achilles data set:       pa_new
+```
+
+
+```{r}
+# Z-transformation with prism.exp data set
+Zprism.exp = scale(prism.exp)
+# new prism.exp -> Zprism.exp
+
+# by formula
+# mean values of each column 
+means=c(apply(prism.exp, 2, function(x){mean(x)}))
+
+
+# standard deviation of each row
+sds=c(apply(prism.exp, 2, function(x){sd(x)}))
+
+
+```
+
+```{r}
+## check whether this function does work:
+### calculate one z-transformed value by hand:
+
+v1=prism.exp[1,1]
+m1=means[1]
+sd1=sds[1]
+
+(v1-m1)/sd1
+
+Zprism.exp[1,1]
+
+### -> function scale() does work for Z-transformation
+
+```
+
+
+# prism
+### NA/row  > 50 % -> delete whole row (5x)
+### In all other cases: utilize na.rm
+```{r}
+sum(is.na(prism))
+NAs.per.row = apply(prism,1,function(x){sum(is.na(x))})
+NAs.per.row
+prism.cleaned = prism[-which(NAs.per.row >=0.5*ncol(prism)),]
+prism.cleaned
+#new prism dataset = prism.cleaned !!!
+dim(prism)
+dim(prism.cleaned)
+# 5 rows deleted
+#proof: 
+ncol =ncol(prism)
+ncol*0.5
+sum(NAs.per.row >= 5584)
+```
+`BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBREAK``
+```{r}
+# 
+```
+
