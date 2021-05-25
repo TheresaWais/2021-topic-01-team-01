@@ -1,8 +1,0 @@
-# 2021-topic-01-team-01
-prsim dataset: #NAs per row > 50% -> delete whole row
-               others: is.na
-prism.achilles: delete all rows(3) with NAs: apply(prism.achilles,1,function(x){sum(is.na(x))})
-                  cell lines: ACH-000836
-                              ACH-000901
-                              ACH-000939
-prism.exp: Z-transformation
