@@ -1,3 +1,4 @@
+```{r}
 Here our R-Code for data cleaning has to show up:
 # working with prism.achilles data set
 ## delete all 3 rows with NAs 
@@ -25,43 +26,32 @@ Zprism.exp = scale(prism.exp)
 # new prism.exp -> Zprism.exp
 
 # by formula
-(# mean values of each column 
+# mean values of each column 
 means=c(apply(prism.exp, 2, function(x){mean(x)}))
-means
+
 
 # standard deviation of each row
 sds=c(apply(prism.exp, 2, function(x){sd(x)}))
-sds
+
 
 ```
 
 ```{r}
-# use function scale()for z-transformation
+## check whether this function does work:
+### calculate one z-transformed value by hand:
 
-# use function scale for first column
-
-s=scale(prism.exp[,1])
-s
-# 
-```
-
-
-```{r}
-# use formula for first column
-n1=prism.exp[1,1]
+v1=prism.exp[1,1]
 m1=means[1]
 sd1=sds[1]
 
-(n1-m1)/sd1
-#-> with function scale z transformation does work)
+(v1-m1)/sd1
 
+Zprism.exp[1,1]
+
+### -> function scale() does work for Z-transformation
 
 ```
 
-```{r}
-# try wirh transforms()
-transformx(prism.exp, scale.type="unit.sd", x.cernter, x.scale)
-```
 
 # prism
 ### NA/row  > 50 % -> delete whole row (5x)
@@ -81,3 +71,5 @@ ncol =ncol(prism)
 ncol*0.5
 sum(NAs.per.row >= 5584)
 ```
+```
+
