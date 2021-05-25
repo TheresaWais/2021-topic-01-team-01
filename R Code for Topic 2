@@ -1,1 +1,95 @@
-# Topic: Correlation between applied drugs and cytotoxic effect on lung cancer cells?
+```{r}
+# Correaltion between applied drugs and cytotoxic effect on lung cancer cells?
+
+## Can we separate lung cancer subtypes by Principal Components
+
+  ## filter prism data for lung cancer cell lines
+diseases=prism.cl[, 20]
+
+p_lung=c(which(diseases=="Lung Cancer"))
+
+
+prism_lung=prism[p_lung,]
+prism_lung
+
+# prism data set which only contains lung cancer cell lines:     prism_lung
+
+# check for number of lung cancer cell lines
+dim(prism_lung)
+```
+
+```{r}
+# Principal Component analysis with lung cancer cell lines from prism data set
+
+  ## PCA makes Z-transformation necessary (whithin columns)
+
+prism_lung_scaled=scale(prism_lung)
+
+# compute variance for all medicaments accross all cell lines
+topVar=apply(prism_lung, 1, var, na.rm=TRUE)
+summary(topVar)
+
+# only select those medicaments and their doses which explain a variance in the top 25%
+q75=quantile(topVar, probs=0.75)
+lung.top.Var=prism_lung[which(topVar>=q75),]
+dim(lung.top.Var)
+```
+```{r}
+## correlation based distance matric
+cor.mat=cor(lung.top.Var, method="pearson")
+library (pheatmap)
+pheatmap(cor.mat)
+```
+
+
+
+
+```{r}
+# search for NAs in prism_lung
+
+sum(is.na(prism_lung))
+```
+```{r}
+install.packages("VIM")
+library(VIM)
+```
+
+
+```{r}
+sleep[!complete.cases((VIM::sleep),)]
+sum(is.na(VIM::sleep))
+```
+
+```{r}
+###??????????????????????????????
+nPCs=estim_ncpPCA(prism_lung[,1:11168], scale=TRUE, method="Regularized")
+```
+```{r}
+# imupting missing values with pcaMethods
+# library(pcaMethods)
+##-> not possible with this version of r!
+imputePCA(prism_lung, scale=TRUE, )
+```
+
+```{r}
+# use prcomp for PCA
+prcomp(prism_lung, na.rm)
+```
+```{r}
+# use hotdeck() for imputing missing data
+prism_lung_imputed=hot.deck(prism_lung)
+
+
+```
+```{r}
+install.packages("pcaMethods")
+
+```
+```{r}
+chooseCRANmirror()
+```
+
+```{r}
+kNN(prism_lung)
+```
+
