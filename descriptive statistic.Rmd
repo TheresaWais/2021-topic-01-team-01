@@ -65,3 +65,18 @@ barplot(table(mutation.class.clean),
         main = "Distribution of Mutation Classes in given genes of Prism.snv")
 ```
 
+## Prism.cnv
+# histogram of gene copy numbers
+```{r}
+mean.cnv.genes = apply(prism.cnv, 2, mean)
+mean.cnv.genes
+
+hist(mean.cnv.genes,
+     freq = TRUE,
+     main = "Mean Gene Copy Numbers",
+     xlab = "Mean copy number of every gene",
+     ylab = "Counts of mean copy number",
+     plot = TRUE,
+     breaks = 10000)
+```
+
