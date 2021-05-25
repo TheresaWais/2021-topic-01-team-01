@@ -10,6 +10,35 @@ output: html_document
 # Drug Types barplot
 
 ```{r}
+# create vector of disease.area entries
+disease.areas = prism.treat$disease.area
 
+# exclude NAs
+clean.disease.area = na.exclude(disease.areas)
+
+# determine length of vector #3944
+length(clean.disease.area)
+
+# determine entries #493
+length(clean.disease.area)/8
+
+# sequence of numbers from from 1 to 3944 in steps of 8
+pick.8 = seq(1,3944, by=8)
+pick.8
+
+# select every eighth entry of disease.area vector
+plot.disease = clean.disease.area[c(pick.8)]
+plot.disease
 ```
 
+# Creating the bar plot
+```{r}
+barplot(table(plot.disease),
+        xlab = "Disease area of drugs",
+        ylab = "Amount of drugs for given disease areas",
+        main = "Overview barplot of the original use of tested drugs",
+        space = 2)
+```
+
+## Prism.snv
+# Barplot Arten der Mutation
