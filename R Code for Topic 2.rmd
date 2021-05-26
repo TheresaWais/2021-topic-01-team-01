@@ -17,44 +17,48 @@ prism_lung
 # check for number of lung cancer cell lines
 dim(prism_lung)
 ```
-
 ```{r}
 # Principal Component analysis with lung cancer cell lines from prism data set
 
-  ## PCA makes Z-transformation necessary (whithin columns)
+# do PCA only with third dose of each medicament
+## filter prism_lung_scaled for third doses
 
-prism_lung_scaled=scale(prism_lung)
+third=seq(3, 11168, by=8)
 
-# compute variance for all medicaments accross all cell lines
-topVar=apply(prism_lung, 1, var, na.rm=TRUE)
-summary(topVar)
+prism_3=prism_lung[,third]
 
-# only select those medicaments and their doses which explain a variance in the top 25%
-q75=quantile(topVar, probs=0.75)
-lung.top.Var=prism_lung[which(topVar>=q75),]
-dim(lung.top.Var)
+dim(prism_3)
+
+    ##-> new data set: prism_3   
+    ##(third dose of each medicament with lung            cancer data)
 ```
-```{r}
-## correlation based distance matric
-cor.mat=cor(lung.top.Var, method="pearson")
-library (pheatmap)
-pheatmap(cor.mat)
-```
-
-
-
 
 ```{r}
-# search for NAs in prism_lung
+# replace NAs 
+## calculate means of columns
+average_column=apply(prism_3,2,mean, na.rm=TRUE)
+```
 
-sum(is.na(prism_lung))
+```{r}
+apply(prism_3, 2, replace)
+```
+
+```{r}
+# use zoo package to replace all missing values by column means
+library("zoo")
+prism_3_replaced=na.aggregate(prism_3)
+
+sum(is.na(prism_3_replaced))
+
+#?????????????????????????????????????? Why are there still so many NAs?
+
+
 ```
 ```{r}
-install.packages("VIM")
-library(VIM)
-sum(is.na(VIM::prism_lung))
+# use other method
+missing=apply(prism_3[,1:1396],2,mean,na.rm=TRUE)
+columns=
 ```
-
 
 ```{r}
 sleep[!complete.cases((VIM::sleep),)]
