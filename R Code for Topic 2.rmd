@@ -57,7 +57,7 @@ sum(is.na(prism_3_replaced))
 ```{r}
 # use other method
 missing=apply(prism_3[,1:1396],2,mean,na.rm=TRUE)
-columns=
+
 ```
 
 ```{r}
