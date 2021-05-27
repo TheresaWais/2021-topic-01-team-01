@@ -79,4 +79,22 @@ hist(mean.cnv.genes,
      plot = TRUE,
      breaks = 10000)
 ```
+## Prism.achilles
+#Mean-value-Plotting
 
+```{r}
+# calculate mean values of each gene in achilles dataset
+mean.achilles.genes = apply(pa_new, 2, mean)
+
+# plot mean values of each gene
+hist(mean.achilles.genes,
+     freq = TRUE,
+     main = "Summary of Mean Achilles Values",
+     xlab = "Mean Achilles Values",
+     ylab = "Counts of Mean Achilles Values",
+     plot = TRUE,
+     breaks = 10000)
+```
+
+## Prism dataset
+# Boxplots für jede Krebsart
