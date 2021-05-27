@@ -1,0 +1,59 @@
+---
+title: "New data frames"
+author: "Julia Oster"
+date: "26 5 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# prism
+1) prism.cleaned -> rows deleted with >= 50% NAs
+```{r}
+NAs.per.row = apply(prism,1,function(x){sum(is.na(x))})
+prism.cleaned = prism[-which(NAs.per.row >=0.5*ncol(prism)),]
+```
+
+
+# prism.cl
+1) lung.cls -> DepMap_ID of all Lung cancer cell lines
+```{r}
+lung.cls = prism.cl$DepMap_ID[prism.cl$disease=="Lung Cancer"]
+```
+
+
+# prism.exp
+1) Zprism.exp -> Z-transformation
+```{r}
+Zprism.exp = scale(prism.exp)
+```
+2) LC.prism.exp -> prism.exp data frame only with Lung cancer cell lines
+```{r}
+# without Z-transformation
+lung.cls = prism.cl$DepMap_ID[prism.cl$disease=="Lung Cancer"]
+LC.prism.exp = prism.exp[lung.cls,]
+```
+3) LC.Zprism.exp -> Zprism.exp data frame only with Lung cancer cell lines
+
+
+# prism.achilles
+1) pa_new -> no NAs, 3 rows deleted
+```{r}
+rmv.rows=apply(prism.achilles,1,function(x){sum(is.na(x))})
+pa_new=prism.achilles[-which(rmv.rows>0),]
+```
+2)LC.prism.achilles -> prism.achilles data frame only with Lung cancer cell lines
+```{r}
+lung.cls = prism.cl$DepMap_ID[prism.cl$disease=="Lung Cancer"]
+LC.prism.achilles = prism.achilles[lung.cls,]
+```
+
+
+#prism.cnv
+1)LC.prism.cnv -> prism.cnv data frame only with Lung cancer cell lines
+```{r}
+lung.cls = prism.cl$DepMap_ID[prism.cl$disease=="Lung Cancer"]
+LC.prism.cnv = prism.cnv[lung.cls,]
+```
