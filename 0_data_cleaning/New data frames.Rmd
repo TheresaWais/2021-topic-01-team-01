@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 1) prism.cleaned -> rows deleted with >= 50% NAs
 ```{r}
 NAs.per.row = apply(prism,1,function(x){sum(is.na(x))})
-prism.cleaned = prism[-which(NAs.per.row >=0.5*ncol(prism)),]
+prism.cleaned = prism[-which(NAs.per.row >=0.5*ncol(prism)),] #prism.cleaned
 ```
 
 
