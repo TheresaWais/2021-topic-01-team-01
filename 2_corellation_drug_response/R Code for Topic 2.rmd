@@ -55,16 +55,86 @@ sum(is.na(prism_3_replaced))
 
 
 ```
-```{r}
-# use other method
-missing=apply(prism_3[,1:1396],2,mean,na.rm=TRUE)
 
+```{r}
+library(lattice)
+library(grid)
+library(survival)
+library(Formula)
+library(ggplot2)
+install.packages(Hmisc)
+library(Hmisc)
 ```
 
 ```{r}
-sleep[!complete.cases((VIM::sleep),)]
-sum(is.na(VIM::sleep))
+column_1_imputed=
+  with(prism_3, impute(prism_3[,1],mean))
+
+sum(is.na(column_1_imputed))
+#-> imputation by means of single rows does work!
 ```
+
+
+```{r}
+for(i in 1:ncol(prism_3)){
+  prism_3[,i][is.na(prism_3[,i])]=mean(prism_3[,i], na.rm=TRUE)
+}
+
+sum(is.na(prism_3))
+```
+
+
+```{r}
+apply(prism_3, 1, function(x){sum(is.na(x))})
+NA_column=apply(prism_3, 2, function(x){sum(is.na(x))})
+```
+
+
+```{r}
+# search for columns with remaining NAs
+c_NA=c(prism_3[,which( NA_column>1)])
+length(c_NA)
+#-> in 10 columns there are missing values
+
+c_NA
+```
+
+
+```{r}
+# remove these 10 columns 
+prism_ready=prism_3[,-which(NA_column>1)]
+
+sum(is.na(prism_ready))
+
+#-> prism_ready is the successfully cleaned prism data frame; it does only include those cell lines which belong to lung cancer; it does only contain the third dose of each medicament; all NAs were replaced by the mean of the corresponding column; 10 columns with only NAs have been removed 
+dim(prism_new)
+#-> dim= 102   1386
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```{r}
 ###??????????????????????????????
@@ -197,4 +267,3 @@ chooseCRANmirror()
 ```{r}
 kNN(prism_lung)
 ```
-
