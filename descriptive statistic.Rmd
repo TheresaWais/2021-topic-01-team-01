@@ -98,3 +98,25 @@ hist(mean.achilles.genes,
 
 ## Prism dataset
 # Boxplots für jede Krebsart
+
+```{r}
+
+```
+
+# Plot of mean values (Cell lines)
+
+```{r}
+# determine mean sensitivity values of every cell line
+mean.prism.clean = apply(prism.cleaned, 1, mean, na.rm = TRUE)
+mean.prism.clean
+
+# plot mean values
+hist(mean.achilles.genes,
+     freq = TRUE,
+     main = "Distribution of Mean Sensitivity Values",
+     xlab = "Mean Sensitivity Values",
+     ylab = "Counts of Mean Sensitivity Values",
+     plot = TRUE,
+     breaks = 10000)
+```
+
