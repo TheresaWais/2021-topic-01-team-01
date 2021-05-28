@@ -100,7 +100,14 @@ hist(mean.achilles.genes,
 # Boxplots für jede Krebsart
 
 ```{r}
+## lung
+# selection of lung cancer values ( siehe R-Code for topic 2)
+# 
+dim(prism_lung)
+everyeighth.prism_lung = seq(1, 11168, by = 8)
 
+
+## 
 ```
 
 # Plot of mean values (Cell lines)
