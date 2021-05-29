@@ -1,0 +1,129 @@
+---
+title: "descriptive statistic"
+author: "Lena Wickenhäuser"
+date: "5/25/2021"
+output: html_document
+---
+### Descriptive Statistic
+
+## Prism.treat
+# Drug Types barplot
+
+```{r}
+# create vector of disease.area entries
+disease.areas = prism.treat$disease.area
+
+# exclude NAs
+clean.disease.area = na.exclude(disease.areas)
+
+# determine length of vector #3944
+length(clean.disease.area)
+
+# determine entries #493
+length(clean.disease.area)/8
+
+# sequence of numbers from from 1 to 3944 in steps of 8
+pick.8 = seq(1,3944, by=8)
+pick.8
+
+# select every eighth entry of disease.area vector
+plot.disease = clean.disease.area[c(pick.8)]
+plot.disease
+```
+
+# Creating the bar plot
+```{r}
+# create barplot of disease areas of drugs used for drug repurposing
+barplot(table(plot.disease),
+        xlab = "Disease area of drugs",
+        ylab = "Amount of drugs for given disease areas",
+        main = "Overview barplot of the original use of tested drugs",
+        space = 2)
+```
+
+## Prism.snv
+# Barplot Arten der Mutation
+```{r}
+# select columns of interest out of prism.snv
+mutation.types = prism.snv[, "Variant_Type"]
+mutation.class = prism.snv[, "Variant_Classification"]
+
+# remove NAs
+mutation.types.clean = na.exclude(mutation.types)
+mutation.class.clean = na.exclude(mutation.class)
+
+# Barplot Mutation Types
+barplot(table(mutation.types.clean),
+        xlab = "Mutation Types",
+        ylab = "Counts",
+        main = "Distribution of Mutations in given genes of Prism.snv")
+
+# Barplot Mutation Classes
+barplot(table(mutation.class.clean),
+        xlab = "Mutation Classes",
+        ylab = "Counts",
+        main = "Distribution of Mutation Classes in given genes of Prism.snv")
+```
+
+## Prism.cnv
+# histogram of gene copy numbers
+```{r}
+mean.cnv.genes = apply(prism.cnv, 2, mean)
+mean.cnv.genes
+
+hist(mean.cnv.genes,
+     freq = TRUE,
+     main = "Mean Gene Copy Numbers",
+     xlab = "Mean copy number of every gene",
+     ylab = "Counts of mean copy number",
+     plot = TRUE,
+     breaks = 10000)
+```
+## Prism.achilles
+#Mean-value-Plotting
+
+```{r}
+# calculate mean values of each gene in achilles dataset
+mean.achilles.genes = apply(pa_new, 2, mean)
+
+# plot mean values of each gene
+hist(mean.achilles.genes,
+     freq = TRUE,
+     main = "Summary of Mean Achilles Values",
+     xlab = "Mean Achilles Values",
+     ylab = "Counts of Mean Achilles Values",
+     plot = TRUE,
+     breaks = 10000)
+```
+
+## Prism dataset
+# Boxplots für jede Krebsart
+
+```{r}
+## lung
+# selection of lung cancer values ( siehe R-Code for topic 2)
+# 
+dim(prism_lung)
+everyeighth.prism_lung = seq(1, 11168, by = 8)
+
+
+## 
+```
+
+# Plot of mean values (Cell lines)
+
+```{r}
+# determine mean sensitivity values of every cell line
+mean.prism.clean = apply(prism.cleaned, 1, mean, na.rm = TRUE)
+mean.prism.clean
+
+# plot mean values
+hist(mean.achilles.genes,
+     freq = TRUE,
+     main = "Distribution of Mean Sensitivity Values",
+     xlab = "Mean Sensitivity Values",
+     ylab = "Counts of Mean Sensitivity Values",
+     plot = TRUE,
+     breaks = 10000)
+```
+
