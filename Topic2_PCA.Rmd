@@ -31,14 +31,14 @@ dim(prism_3)
     ##-> new data set: prism_3  
     ##(third dose of each medicament with lung cancer data)
 
-# which drug doses have an other index
+(# which drug doses have an other index
 x=colnames(prism_3)
 tail(x,n=100)
 head(x,n=100)
 y=c(tail(x,n=100))
 grep(0.00976562,x)
 grep(0.00976562,y)
-# nicht fertig!!!
+# nicht fertig!!!)
 ```
 
 ```{r}
@@ -171,8 +171,10 @@ fviz_pca_biplot(prism_PCA, axes=c(1,2), geom=c("point"), geom.var=("arrow"),titl
 ```{r}
 # Plot with different colors PCA1
 
+# prism.cl data frame only with lung cancer cell lines
+
 # data frame only with DepMap_IDs and Lung cancer subtypes for coloring
-prism.LCsubtypes = prism.cl_lung[,c(1,7)]
+prism.LCsubtypes = prism.cl_lung[,c(1,7)] # col 1 = DepMap_IDs # col 7 = lineage subtypes 
 
 # plot
 fviz_pca_ind(prism_PCA, 
@@ -235,7 +237,7 @@ get_eigenvalue(prism_PCA2)
 
 ```{r}
 ###??????????????????????????????
-nPCs=estim_ncpPCA(prism_lung, ncp.min=0, ncp.max=100, method="Regularized", scale=TRUE, method.cv="gcv")
+nPCs=estim_ncp(prism_lung, ncp.min=0, ncp.max=100, method="Regularized", scale=TRUE, method.cv="gcv")
 nPCs$ncp
 
 completed=imputePCA(prism_lung, ncp=nPCs$ncp, scale=TRUE)
@@ -244,33 +246,16 @@ completed=imputePCA(prism_lung, ncp=nPCs$ncp, scale=TRUE)
 ```{r}
 # question for tutorium
 
-# use library(missMDA)
+# warum bei verschiedenen PCA-Methoden verschiedene PCAs -> %-Zahlen
 
-library(missMDA)
-## only use first 500 columns
-### number of missing values
-sum(is.na(prism_lung[,1:500]))
-
-### optimal number of dimensions for imputation
-ncp=estim_ncpPCA(prism_lung[,1:500])
-ncp
-
-### data imputation
-complete=imputePCA(prism_lung[,1:500], ncp=ncp$ncp, scale=TRUE)
-
-complete
 ```
-```{r}
-complete
-as.data.frame(complete)
-```
-
+####################################################################################
 
 ```{r}
 # do PCA with completed data
-library(FactoMineR)
+#library(FactoMineR)
 lung_pca=PCA(complete$completeObs)
-```
+#```
 
 
 ```{r}
