@@ -22,7 +22,7 @@ dim(prism_lung)
 # Principal Component analysis with lung cancer cell lines from prism data set
 
 # do PCA only with third dose of each medicament
-## filter prism_lung_scaled for third doses
+## filter prism_lung_scaled for third doses!
 
 third=seq(3, 11168, by=8)
 
