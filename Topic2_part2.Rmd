@@ -189,12 +189,12 @@ prism.treat[3273,5]
 ```{r}
 # second drug: BRD-A66419424-001-02-4::2.5::HTS002 
                                1104 
-c2=c(prism_SCLC[1,1097:1104])
-
+c2=c(prism_SCLC[2,1097:1104])
+c2
 
 
  
-c1=c(1,2,3,4,5,6,7,8,-0.2405383,0.6665986,0.4240337,-0.3988575,-0.5309674,-2.403179,-6.90207,-6.710018)
+c1=c(1,2,3,4,5,6,7,8,0.7309511,0.590873,1.218204,0.3833024,0.8667794,-0.4719236,-8.701737,-9.320642)
 ```
 
 
@@ -211,7 +211,7 @@ plot(drug2, xlab="doses", ylab="effect of drug1 on SCLC cell lines growth")
 ```{r}
 # test for correlation
 x=c(1,2,3,4,5,6,7,8)
-y=c(-0.2405383,0.6665986,0.4240337,-0.3988575,-0.5309674,-2.403179,-6.90207,-6.710018)
+y=c(0.7309511,0.590873,1.218204,0.3833024,0.8667794,-0.4719236,-8.701737,-9.320642)
 cor(x,y)
 ```
 
@@ -227,14 +227,13 @@ prism.treat[1249,5]
 ```{r}
 # third drug: BRD-K12867552-001-04-7::10::HTS002 
                               2831 
-c2=c(prism_SCLC[1,2825:2832])
+c2=c(prism_SCLC[3,2825:2832])
 c2
 
 
 
  
-c1=c(1,2,3,4,5,6,7,8,0.3702039,-0.0326239,0.5394162,
-     -0.4392287,-0.2233907,-0.6451133,-5.796738,-4.722408)
+c1=c(1,2,3,4,5,6,7,8,0.7686234,0.5730888,0.6686534,0.820555,1.031086,0.7536717,-8.31886,-2.357724)
 ```
 
 
@@ -251,8 +250,7 @@ plot(drug3, xlab="doses", ylab="effect of drug3 on SCLC cell lines growth")
 ```{r}
 # test for correlation
 x=c(1,2,3,4,5,6,7,8)
-y=c(0.3702039,-0.0326239,0.5394162,
-     -0.4392287,-0.2233907,-0.6451133,-5.796738,-4.722408)
+y=c(0.7686234,0.5730888,0.6686534,0.820555,1.031086,0.7536717,-8.31886,-2.357724)
 cor(x,y)
 ```
 
@@ -263,6 +261,239 @@ prism.treat[3074,5]
 #-> medicament: PCI-24781
 ```
 
+```{r}
+#fourth drug:BRD-K96104201-001-01-5::10::HTS002 
+                             10767 
+
+c2=c(prism_SCLC[6,10761:10768])
+
+# this medicament was the most effective for the 8th cell line of prism_SCLC, too
+c2.2=c(prism_SCLC[8, 10761:10768])
+
+
+c1=c(1,2,3,4,5,6,8,0.2609308,0.6316695,0.1250064,0.6839668,0.4557789,-0.1928866,-10.26673,-6.645097)
+
+c1.2=c(1,2,3,4,5,6,7,8,0.4332369,0.5019201,0.4385701,0.5883302,0.1971815,-0.3786651,-10.14163,-5.28422)
+```
+
+
+```{r}
+# create data of second medicament an all of its 8 doses
+
+drug4=matrix(c1, nrow=8,ncol=2, byrow=FALSE)
+plot(drug4, xlab="doses", ylab="effect of drug4 on SCLC cell lines growth")
+
+drug4.2=matrix(c1.2, nrow=8,ncol=2, byrow=FALSE)
+plot(drug4, xlab="doses", ylab="effect of drug4.2 on SCLC cell lines growth")
+
+
+
+```
+# not dose dependency, maybe mistake ? Why only effect with such an high dose and NA with higher dose?
+```{r}
+# test for correlation
+x=c(1,2,3,4,5,6,7,8)
+y=c(0.2609308,0.6316695,0.1250064,0.6839668,0.4557789,-0.1928866,-10.26673,-6.645097)
+cor(x,y)
+
+y.2=c(0.4332369,0.5019201,0.4385701,0.5883302,0.1971815,-0.3786651,-10.14163,-5.28422)
+cor(x,y.2)
+```
+
+```{r}
+# get information about fourth drug:
+which(prism.treat$broad_id=="BRD-K96104201-001-01-5" )
+prism.treat[10778,5]
+#-> medicament: azalomycin-b
+```
+###################################################
+
+```{r}
+# fifth drug: BRD-K15409150-001-05-8::10::HTS002 
+                              3167 
+c2=c(prism_SCLC[4,3161:3168])
+
+
+c2.2=c(prism_SCLC[5,3161:3168])
+c2.2
+ 
+c1=c(1,2,3,4,5,6,7,8,0.3252984,0.2691451,0.8199687
+,0.2753309,-0.3301197,-1.751943,-9.612311,-4.776765)
+
+c1.2=c(1,2,3,4,5,6,7,8,0.6296565,0.1011332,0.3341141,0.05411984,-0.4416629,-1.35251,-9.86566,-3.581259)
+```
+
+
+```{r}
+# create data of fifth medicament an all of its 8 doses for cell line 4 and 5 of prism_SCLC 
+
+drug5=matrix(c1, nrow=8,ncol=2, byrow=FALSE)
+plot(drug5, xlab="doses", ylab="effect of drug5 on SCLC cell lines growth")
+
+drug5.2=matrix(c1.2, nrow=8,ncol=2, byrow=FALSE)
+plot(drug5.2, xlab="doses", ylab="effect of drug5.2 on SCLC cell lines growth")
+
+
+```
+# not dose dependency
+```{r}
+# test for correlation
+x=c(1,2,3,4,5,6,7,8)
+y=c(0.3252984,0.2691451,0.8199687
+,0.2753309,-0.3301197,-1.751943,-9.612311,-4.776765)
+
+cor(x,y)
+
+y.2=c(0.6296565,0.1011332,0.3341141,0.05411984,-0.4416629,-1.35251,-9.86566,-3.581259)
+
+cor(x,y.2)
+```
+
+```{r}
+# get information about third drug:
+which(prism.treat$broad_id=="BRD-K15409150-001-05-8" )
+prism.treat[3401,5]
+#-> medicament: penfluridol
+```
+``####################################################`
+```{r}
+# get more information about drugs for SCLC:
+```
+
+
+```{r}
+# givinostat
+which(prism.treat$broad_id=="BRD-K13810148-311-03-2")
+#-> row 3273:3280
+
+# proof name
+prism.treat[3280,5]
+
+# mode of action
+prism.treat[3280,6]
+#-> HDAC inhibitor
+
+# target
+prism.treat[3280,7]
+#-> HDAC1, HDAC2, HDAC3, HDAC4, HDAC5, HDAC6, HDAC7, HDAC8, HDAC9...
+
+# disease.area
+prism.treat[3280,8]
+#-> NA
+
+# indication
+prism.treat[3280,9]
+#-> NA
+```
+
+
+```{r}
+# ixazomib-citrate
+which(prism.treat$broad_id=="BRD-A66419424-001-02-4")
+#-> row 1249:1256
+
+# proof name
+prism.treat[1249,5]
+
+# mode of action
+prism.treat[1249,6]
+#-> protease inhibitor
+
+# target
+prism.treat[1249,7]
+#-> ?...
+
+# disease.area
+prism.treat[1249,8]
+#-> hematologic malignancy
+
+# indication
+prism.treat[1249,9]
+#-> multiple myeloma
+```
+```{r}
+# PCI-24781
+which(prism.treat$broad_id=="BRD-K12867552-001-04-7")
+#-> row 3073:3080
+
+# proof name
+prism.treat[3073,5]
+
+# mode of action
+prism.treat[3073,6]
+#-> HDAC inhibitor
+
+# target
+prism.treat[3073,7]
+#-> HDAC1, HDAC2, HDAC3, HDAC6
+
+# disease.area
+prism.treat[3073,8]
+#-> NA
+
+# indication
+prism.treat[3073,9]
+#-> NA
+```
+```{r}
+# azalomycin-b
+which(prism.treat$broad_id=="BRD-K96104201-001-01-5")
+#-> row 10777:10784
+
+# proof name
+prism.treat[10777,5]
+
+# mode of action
+prism.treat[10777,6]
+#-> bacterial 50S ribosomal subunit inhibitor
+
+# target
+prism.treat[10777,7]
+#-> NA
+
+# disease.area
+prism.treat[10777,8]
+#-> NA
+
+# indication
+prism.treat[10777,9]
+#-> NA
+```
+
+
+```{r}
+# penfluridol
+which(prism.treat$broad_id=="BRD-K15409150-001-05-8")
+#-> row 3401:3408
+
+# proof name
+prism.treat[3401,5]
+
+# mode of action
+prism.treat[3401,6]
+#-> T-type calcium channel blocker
+
+# target
+prism.treat[3401,7]
+#-> CACNA1G
+
+# disease.area
+prism.treat[3401,8]
+#-> neurology/psychiatry
+
+# indication
+prism.treat[3401,9]
+#-> schizophrenia
+```
+
+```
+sum up information about drugs for SCLC:
+
+-> givinostat
+-> ixazomib-citrate
+-> PCI-24781
+-> azalomycin-b
+-> penfluridol
 
 
 
