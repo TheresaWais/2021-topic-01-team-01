@@ -44,18 +44,20 @@ average_column=apply(prism_3,2,mean, na.rm=TRUE)
 
 
 ```{r}
+# 1)
 # use zoo package to replace all missing values by column means
 library("zoo")
 prism_3_replaced=na.aggregate(prism_3)
 
 sum(is.na(prism_3_replaced))
 
-#?????????????????????????????????????? Why are there still so many NAs?
+#? Why are there still so many NAs? -> in 10 rows all values are missing(102 celllines) -> 1020 NAs, function can not calculate mean 
 
 
 ```
 
 ```{r}
+# 2)
 # replace missing values by mean of column by hand
 for(i in 1:ncol(prism_3)){
   prism_3[,i][is.na(prism_3[,i])]=mean(prism_3[,i], na.rm=TRUE)
@@ -63,7 +65,7 @@ for(i in 1:ncol(prism_3)){
 
 sum(is.na(prism_3))
 
-#-> still 1020 Nas left! Why?
+#-> still 1020 Nas left! 
 ```
 
 ```{r}
