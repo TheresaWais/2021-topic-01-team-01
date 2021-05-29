@@ -74,6 +74,27 @@ dim(prism_NSCLC)
 ```
 #############################################
 ```{r}
+# search for most effective drugs in SCLC cell lines
+prism_SCLC
+```
+
+
+```{r}
+min=min(prism_SCLC, na.rm=TRUE)
+min
+which(prism_SCLC==min)
+which.min(prism_SCLC)
+prism[,86134]
+```
+
+
+```{r}
+vector_SCLC=as.list(prism_SCLC)
+which.min(vector_SCLC)
+```
+
+
+```{r}
 
 ```
 
