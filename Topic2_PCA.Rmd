@@ -85,9 +85,9 @@ length(c_NA)
 
 ```{r}
 # remove these 10 columns 
-prism_ready=prism_3[,-which(NA_column>1)]
+prism_new=prism_3[,-which(NA_column>1)]
 
-sum(is.na(prism_ready))
+sum(is.na(prism_new))
 
 #-> prism_ready is the successfully cleaned prism data frame; it does only include those cell lines which belong to lung cancer; it does only contain the third dose of each medicament; all NAs were replaced by the mean of the corresponding column; 10 columns with only NAs have been removed 
 dim(prism_new)
