@@ -95,6 +95,174 @@ which.min(vector_SCLC)
 
 
 ```{r}
+column=apply(prism_SCLC, 2, function(x){sum(is.na(x))})
+
+prism_SCLC_cleaned=prism_SCLC[,-which(column>10)]
+
+dim(prism_SCLC_cleaned)
+
+#-> NAs removen doesn´t make sense
+```
+
+
+```{r}
+# look at mins rowwise
+min(prism_SCLC[1,], na.rm=TRUE)
+which.min(prism_SCLC[1,])
+
+## test
+prism_SCLC[1,3039]
+###-> function which.min does work
+```
+
+
+```{r}
+min(prism_SCLC[1,], na.rm=TRUE)
+min(prism_SCLC[2,], na.rm=TRUE)
+min(prism_SCLC[3,], na.rm=TRUE)
+min(prism_SCLC[4,], na.rm=TRUE)
+min(prism_SCLC[5,], na.rm=TRUE)
+min(prism_SCLC[6,], na.rm=TRUE)
+min(prism_SCLC[7,], na.rm=TRUE)
+min(prism_SCLC[8,], na.rm=TRUE)
+```
+```{r}
+which.min(prism_SCLC[1,])
+which.min(prism_SCLC[2,])
+which.min(prism_SCLC[3,])
+which.min(prism_SCLC[4,])
+which.min(prism_SCLC[5,])
+which.min(prism_SCLC[6,])
+which.min(prism_SCLC[7,])
+which.min(prism_SCLC[8,])
+```
+```{r}
+# most effective drugs on SCLC
+# BRD-K13810148-311-03-2::10::HTS002 
+                              3039 
+#BRD-A66419424-001-02-4::2.5::HTS002 
+                               1104 
+#BRD-K12867552-001-04-7::10::HTS002 
+                              2831 
+#BRD-K15409150-001-05-8::10::HTS002 
+                              3167 
+#BRD-K15409150-001-05-8::10::HTS002 
+                              3167 
+#BRD-K96104201-001-01-5::10::HTS002 
+                             10767 
+#BRD-K39484304-001-16-5::10::HTS002 
+                              5447 
+#BRD-K96104201-001-01-5::10::HTS002 
+                             10767 
+```
+#used doses: dose1, dose2, dose3, dose4, dose5, dose6, 10, 2.5
+```{r}
+# first drug:BRD-K13810148-311-03-2::10::HTS002 
+
+c2=c(prism_SCLC[1,3033:3040])
+c2
+
+
+ 
+c1=c(1,2,3,4,5,6,7,8,-0.06933266,-0.8475333,-0.4299717,0.2946714,0.606078,-1.107966,-9.615792,-3.193757)
+```
+
+
+```{r}
+# create data of first medicament an all of its 8 doses
+
+drug1=matrix(c1, nrow=8,ncol=2, byrow=FALSE)
+plot(drug1)
+
+
 
 ```
+```{r}
+# get information about first drug:
+which(prism.treat$broad_id=="BRD-K13810148-311-03-2")
+prism.treat[3273,5]
+```
+
+# no doses dependency for medicament 1 (givinostat)
+###################################################
+
+```{r}
+# second drug: BRD-A66419424-001-02-4::2.5::HTS002 
+                               1104 
+c2=c(prism_SCLC[1,1097:1104])
+
+
+
+ 
+c1=c(1,2,3,4,5,6,7,8,-0.2405383,0.6665986,0.4240337,-0.3988575,-0.5309674,-2.403179,-6.90207,-6.710018)
+```
+
+
+```{r}
+# create data of second medicament an all of its 8 doses
+
+drug2=matrix(c1, nrow=8,ncol=2, byrow=FALSE)
+plot(drug2, xlab="doses", ylab="effect of drug1 on SCLC cell lines growth")
+
+
+
+```
+# maybe dose dependency
+```{r}
+# test for correlation
+x=c(1,2,3,4,5,6,7,8)
+y=c(-0.2405383,0.6665986,0.4240337,-0.3988575,-0.5309674,-2.403179,-6.90207,-6.710018)
+cor(x,y)
+```
+
+```{r}
+# get information about second drug:
+which(prism.treat$broad_id=="BRD-A66419424-001-02-4" )
+prism.treat[1249,5]
+#-> medicament: ixazomib-citrate
+```
+
+##################################################
+
+```{r}
+# third drug: BRD-K12867552-001-04-7::10::HTS002 
+                              2831 
+c2=c(prism_SCLC[1,2825:2832])
+c2
+
+
+
+ 
+c1=c(1,2,3,4,5,6,7,8,0.3702039,-0.0326239,0.5394162,
+     -0.4392287,-0.2233907,-0.6451133,-5.796738,-4.722408)
+```
+
+
+```{r}
+# create data of second medicament an all of its 8 doses
+
+drug3=matrix(c1, nrow=8,ncol=2, byrow=FALSE)
+plot(drug3, xlab="doses", ylab="effect of drug3 on SCLC cell lines growth")
+
+
+
+```
+# not dose dependency
+```{r}
+# test for correlation
+x=c(1,2,3,4,5,6,7,8)
+y=c(0.3702039,-0.0326239,0.5394162,
+     -0.4392287,-0.2233907,-0.6451133,-5.796738,-4.722408)
+cor(x,y)
+```
+
+```{r}
+# get information about third drug:
+which(prism.treat$broad_id=="BRD-K12867552-001-04-7" )
+prism.treat[3074,5]
+#-> medicament: PCI-24781
+```
+
+
+
 
