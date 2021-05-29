@@ -63,6 +63,39 @@ dim(prism_meso)
 ```
 
 ####################################################
+going on with prism_meso
+
+```{r}
+# find rowwise minima
+n=8
+for(i in 0:n){
+  print(which.min(prism_meso[i,]))
+  i=i+1}
+
+# what are the min values of each row
+min(prism_meso[1,], na.rm=TRUE)
+min(prism_meso[2,], na.rm=TRUE)
+min(prism_meso[3,], na.rm=TRUE)
+min(prism_meso[4,], na.rm=TRUE)
+min(prism_meso[5,], na.rm=TRUE)
+min(prism_meso[6,], na.rm=TRUE)
+min(prism_meso[7,], na.rm=TRUE)
+min(prism_meso[8,], na.rm=TRUE)
+```
+```{r}
+# take first drug: BRD-K13387373-004-14-5::10 
+                                          2167 
+
+# which column in prism
+colnames_prism=c(colnames(prism))
+which(colnames_prism=="BRD-K13387373-004-14-5::10")
+
+#filter for doses in prism dataset
+c2=c(prism_meso[1,2167:2174])
+c2
+
+c(prism_meso[1,2959:2966])
+```
 
 ```{r}
 ### in which rows of prism.cl are Small Cell Lung Cancer cell lines
@@ -192,6 +225,7 @@ min(prism_SCLC[7,], na.rm=TRUE)
 min(prism_SCLC[8,], na.rm=TRUE)
 ```
 ```{r}
+
 which.min(prism_SCLC[1,])
 which.min(prism_SCLC[2,])
 which.min(prism_SCLC[3,])
