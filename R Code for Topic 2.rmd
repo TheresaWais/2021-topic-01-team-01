@@ -4,6 +4,7 @@
 ## Can we separate lung cancer subtypes by Principal Components
 
   ## filter prism data for lung cancer cell lines
+  ## column 20 shows diseases
 diseases=prism.cl[, 20]
 
 p_lung=c(which(diseases=="Lung Cancer"))
@@ -40,9 +41,7 @@ dim(prism_3)
 average_column=apply(prism_3,2,mean, na.rm=TRUE)
 ```
 
-```{r}
-apply(prism_3, 2, replace)
-```
+
 
 ```{r}
 # use zoo package to replace all missing values by column means
@@ -54,6 +53,12 @@ sum(is.na(prism_3_replaced))
 #?????????????????????????????????????? Why are there still so many NAs?
 
 
+```
+```{r}
+# which columns contain NAs
+apply(prism_3,2,function(x){sum(is.na(x))})
+
+##-> 10 columns contain only NAs -> remove 10 lines
 ```
 
 ```{r}
@@ -67,8 +72,12 @@ library(Hmisc)
 ```
 
 ```{r}
+# test with one column
 column_1_imputed=
-  with(prism_3, impute(prism_3[,1],mean))
+  with(prism_3, impute(prism_3[,3],mean))
+
+# how many NAs before imputing
+sum(is.na(prism_3[,33]))
 
 sum(is.na(column_1_imputed))
 #-> imputation by means of single rows does work!
@@ -82,13 +91,6 @@ for(i in 1:ncol(prism_3)){
 
 sum(is.na(prism_3))
 ```
-
-
-```{r}
-apply(prism_3, 1, function(x){sum(is.na(x))})
-NA_column=apply(prism_3, 2, function(x){sum(is.na(x))})
-```
-
 
 ```{r}
 # search for columns with remaining NAs
@@ -148,7 +150,7 @@ fviz_pca_var(prism_PCA2, select.var=list(contrib=4), repel=TRUE)
 ```
 ```{r}
 # barplot contributions of variables to dimension1
-fviz_contrib(prism_PCA2, choice="var", axes=2, top=10)
+fviz_contrib(prism_PCA, choice="var", axes=2, top=10)
 
 # barplot contributions of varibles to dimension2
 fviz_contrib(prism_PCA2, choice="var", axes=2, top=10)
@@ -172,16 +174,10 @@ fviz_pca_ind(prism_PCA, col.ind="cos2", repel=TRUE)
 fviz_pca_ind(prism_PCA2, selected.ind=list(cos2=0.8), repel=TRUE)
 ```
 ```{r}
-# Biplot (induviduals + variables)
-fviz_pca_biplot(prism_PCA, axes=c(1,2), geom=c("point"), geom.var=("arrow"),title = ("PCA - Biplot"))
+# Biplot (induviduals + variables)!
+fviz_pca_biplot(prism_PCA, axes=c(1,2), geom=c("point"), geom.var=(""),title = ("PCA - Biplot"))
 ```
 
-```{r}
-# PCA-Biplot
-fviz_pca_biplot(prism_PCA2)
-fviz_pca_biplot(prism_PCA)
-
-```
 
 ```{r}
 # choose optimum number of PCs via Scree test
