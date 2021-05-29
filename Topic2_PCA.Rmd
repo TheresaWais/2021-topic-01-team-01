@@ -54,51 +54,30 @@ sum(is.na(prism_3_replaced))
 
 
 ```
-```{r}
-# which columns contain NAs
-apply(prism_3,2,function(x){sum(is.na(x))})
-
-##-> 10 columns contain only NAs -> remove 10 lines
-```
 
 ```{r}
-library(lattice)
-library(grid)
-library(survival)
-library(Formula)
-library(ggplot2)
-install.packages(Hmisc)
-library(Hmisc)
-```
-
-```{r}
-# test with one column
-column_1_imputed=
-  with(prism_3, impute(prism_3[,3],mean))
-
-# how many NAs before imputing
-sum(is.na(prism_3[,33]))
-
-sum(is.na(column_1_imputed))
-#-> imputation by means of single rows does work!
-```
-
-
-```{r}
+# replace missing values by mean of column by hand
 for(i in 1:ncol(prism_3)){
   prism_3[,i][is.na(prism_3[,i])]=mean(prism_3[,i], na.rm=TRUE)
 }
 
 sum(is.na(prism_3))
+
+#-> still 1020 Nas left! Why?
 ```
 
 ```{r}
 # search for columns with remaining NAs
+# which columns contain NAs
+NA_column=apply(prism_3,2,function(x){sum(is.na(x))})
+
+##-> 10 columns contain only NAs -> remove 10 lines
+
+# data set without NAs
 c_NA=c(prism_3[,which( NA_column>1)])
 length(c_NA)
 #-> in 10 columns there are missing values
 
-c_NA
 ```
 
 
@@ -344,4 +323,3 @@ chooseCRANmirror()
 ```{r}
 kNN(prism_lung)
 ```
-
