@@ -11,9 +11,7 @@ p_lung=c(which(diseases=="Lung Cancer"))
 
 
 prism_lung=prism[p_lung,]
-prism_lung
-
-# prism data set which only contains lung cancer cell lines:     prism_lung
+prism_lung # prism data set which only contains lung cancer cell lines:     prism_lung
 
 # check for number of lung cancer cell lines
 dim(prism_lung)
@@ -156,7 +154,35 @@ fviz_pca_ind(prism_PCA2, selected.ind=list(cos2=0.8), repel=TRUE)
 ```
 ```{r}
 # Biplot (induviduals + variables)!
-fviz_pca_biplot(prism_PCA, axes=c(1,2), geom=c("point"), geom.var=(""),title = ("PCA - Biplot"))
+fviz_pca_biplot(prism_PCA, axes=c(1,2), geom=c("point"), geom.var=("arrow"),title = ("PCA - Biplot"))
+```
+
+```{r}
+# Plot with different colors PCA1
+
+# data frame only with DepMap_IDs and Lung cancer subtypes for coloring
+prism.LCsubtypes = prism.cl_lung[,c(1,7)]
+
+# plot
+fviz_pca_ind(prism_PCA, 
+            axes = c(1,2),
+            geom = c("point"),
+            col.ind = prism.LCsubtypes$lineage_subtype)
+
+```
+
+```{r}
+# Plot with different colors PCA1
+
+# data frame only with DepMap_IDs and Lung cancer subtypes for coloring
+prism.LCsubtypes = prism.cl_lung[,c(1,7)]
+
+# plot
+fviz_pca_ind(prism_PCA2, 
+            axes = c(1,2),
+            geom = c("point"),
+            col.ind = prism.LCsubtypes$lineage_subtype)
+
 ```
 
 
