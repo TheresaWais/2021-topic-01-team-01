@@ -14,7 +14,7 @@ dim(prism_Meso)
 
 
 ```{r}
-### have a look at Small Cell Lung Cancer cell lines!
+### have a look at Small Cell Lung Cancer cell lines
 diseases_subtype=prism.cl[, 21]
 
 p_SCLC=c(which(diseases_subtype=="Small Cell Lung Cancer (SCLC)"))
