@@ -101,7 +101,7 @@ c_NA
 
 
 ```{r}
-# remove these 10 columns !
+# remove these 10 columns 
 prism_ready=prism_3[,-which(NA_column>1)]
 
 sum(is.na(prism_ready))
@@ -112,12 +112,93 @@ dim(prism_new)
 ```
 
 
+```{r}
+# run PCA with prism_new data frame
+
+## with prcomp()
+prism_PCA=prcomp(prism_new)
+plot(prism_PCA)
+##-> it can be seen in what way the medicaments and their doses belong to the PCs
+```
+
+
+```{r}
+# run PCA with Facto Mine
+library(FactoMineR)
+prism_PCA2=PCA(prism_new)
+```
+```{r}
+# get variance of new dimenstions
+prism_PCA2$eig
+```
+
+```{r}
+# how much of the variance do the new dimensions explain?
+prism_PCA2$var$cos2
+```
+
+```{r}
+# which medicaments do most correlate to first PC?
+dimdesc(prism_PCA2)
+```
+```{r}
+# plot contributions of selected variables
+library(factoextra)
+fviz_pca_var(prism_PCA2, select.var=list(contrib=4), repel=TRUE)
+```
+```{r}
+# barplot contributions of variables to dimension1
+fviz_contrib(prism_PCA2, choice="var", axes=2, top=10)
+
+# barplot contributions of varibles to dimension2
+fviz_contrib(prism_PCA2, choice="var", axes=2, top=10)
+```
+
+
+```{r}
+# contributions of variables
+fviz_contrib(prism_PCA, choice="var", axes=1, top=5)
+fviz_contrib(prism_PCA, choice="var", axes=2, top=5)
+```
+
+```{r}
+# Plot for presentation
+fviz_pca_ind(prism_PCA2, col.ind="cos2", repel=TRUE)
+
+fviz_pca_ind(prism_PCA, col.ind="cos2", repel=TRUE)
 
 
 
+fviz_pca_ind(prism_PCA2, selected.ind=list(cos2=0.8), repel=TRUE)
+```
+```{r}
+# Biplot (induviduals + variables)
+fviz_pca_biplot(prism_PCA, axes=c(1,2), geom=c("point"), geom.var=("arrow"),title = ("PCA - Biplot"))
+```
 
+```{r}
+# PCA-Biplot
+fviz_pca_biplot(prism_PCA2)
+fviz_pca_biplot(prism_PCA)
 
+```
 
+```{r}
+# choose optimum number of PCs via Scree test
+fviz_screeplot(prism_PCA2, ncp=5)
+##-> 2 dimensions optimal
+
+fviz_screeplot(prism_PCA, ncp=5)
+
+##-> 3 dimensions optimal
+```
+
+```{r}
+# find optimal number of PCs via Kaiser-Guttman rule
+summary(prism_PCA2)
+get_eigenvalue(prism_PCA2)
+
+```
 
 
 
