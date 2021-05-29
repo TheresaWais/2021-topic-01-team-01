@@ -28,9 +28,17 @@ prism_3=prism_lung[,third]
 
 dim(prism_3)
 
-
     ##-> new data set: prism_3  
-    ##(third dose of each medicament with lung            cancer data)
+    ##(third dose of each medicament with lung cancer data)
+
+# which drug doses have an other index
+x=colnames(prism_3)
+tail(x,n=100)
+head(x,n=100)
+y=c(tail(x,n=100))
+grep(0.00976562,x)
+grep(0.00976562,y)
+# nicht fertig!!!
 ```
 
 ```{r}
@@ -142,6 +150,9 @@ fviz_contrib(prism_PCA, choice="var", axes=1, top=5)
 fviz_contrib(prism_PCA, choice="var", axes=2, top=5)
 ```
 
+
+
+
 ```{r}
 # Plot for presentation
 fviz_pca_ind(prism_PCA2, col.ind="cos2", repel=TRUE)
@@ -167,7 +178,8 @@ prism.LCsubtypes = prism.cl_lung[,c(1,7)]
 fviz_pca_ind(prism_PCA, 
             axes = c(1,2),
             geom = c("point"),
-            col.ind = prism.LCsubtypes$lineage_subtype)
+            col.ind = prism.LCsubtypes$lineage_subtype,
+            legend.title = "Lung cancer subtypes")
 
 ```
 
@@ -181,7 +193,8 @@ prism.LCsubtypes = prism.cl_lung[,c(1,7)]
 fviz_pca_ind(prism_PCA2, 
             axes = c(1,2),
             geom = c("point"),
-            col.ind = prism.LCsubtypes$lineage_subtype)
+            col.ind = prism.LCsubtypes$lineage_subtype,
+            legend.title = "Lung cancer subtypes")
 
 ```
 
