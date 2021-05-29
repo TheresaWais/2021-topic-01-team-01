@@ -5,25 +5,117 @@
 ### have a look at Mesothelioma cell lines
 diseases_subtype=prism.cl[, 21]
 
+### in which rows of prism.cl are Mesothelioma cell lines?
 p_Meso=c(which(diseases_subtype=="Mesothelioma"))
 p_Meso
+#-> in those rows of prism.cl are Mesothelioma cell lines:54  57  74 136 142 144 243 273
 
-prism_Meso=prism[p_Meso,]
-dim(prism_Meso)
+
 ```
 
 
 ```{r}
-### have a look at Small Cell Lung Cancer cell lines
-diseases_subtype=prism.cl[, 21]
+# which cell line IDs do belong to those rows
+cl1=prism.cl[57,1]
+cl2=prism.cl[136,1]
+cl3=prism.cl[142,1]
+cl4=prism.cl[144,1]
+cl5=prism.cl[243,1]
+cl6=prism.cl[273,1]
+cl7=prism.cl[54,1]
+cl8=prism.cl[74,1]
 
-p_SCLC=c(which(diseases_subtype=="Small Cell Lung Cancer (SCLC)"))
-p_SCLC
-
-prism_SCLC=prism[p_SCLC,]
-dim(prism_SCLC)
+vector_of_cell_lines_meso=c(cl1,cl2, cl3, cl4, cl5, cl6, cl7, cl8, cl8)
+vector_of_cell_lines
 
 ```
+```{r}
+# transform prism data set to make searching for cell lines possible
+prism_transformed=t(prism)
+```
+
+
+```{r}
+vector=c(colnames(prism_trasformed))
+
+
+which(vector==vector_of_cell_lines[1])
+which(vector==vector_of_cell_lines[2])
+which(vector==vector_of_cell_lines[3])
+which(vector==vector_of_cell_lines[4])
+which(vector==vector_of_cell_lines[5])
+which(vector==vector_of_cell_lines[6])
+which(vector==vector_of_cell_lines[7])
+which(vector==vector_of_cell_lines[8])
+
+#-> row of prism data set which belong to mesothelioma cell lines:
+
+row_meso=c(33, 123, 129, 131, 234, 266, 29, 52)
+
+```
+
+###################################################
+```{r}
+# data set for Mesothelioma cell lines with prism data:
+
+prism_meso=prism[row_meso,]
+dim(prism_meso)
+```
+
+####################################################
+
+```{r}
+### in which rows of prism.cl are Small Cell Lung Cancer cell lines
+p_SCLC=c(which(diseases_subtype=="Small Cell Lung Cancer (SCLC)"))
+p_SCLC
+#-> in those rows of prism.cl are SCLC cell lines:125 286 324 350 352 390 404 425
+
+
+```
+
+
+```{r}
+# which cell line IDs do belong to those rows
+cl11=prism.cl[125,1]
+cl22=prism.cl[286,1]
+cl33=prism.cl[324,1]
+cl44=prism.cl[350,1]
+cl55=prism.cl[352,1]
+cl66=prism.cl[390,1]
+cl77=prism.cl[404,1]
+cl88=prism.cl[425,1]
+
+vector_of_cell_lines_SCLC=c(cl11,cl22, cl33, cl44, cl55, cl66, cl77, cl88)
+vector_of_cell_lines_SCLC
+```
+```{r}
+which(vector==vector_of_cell_lines_SCLC[1])
+which(vector==vector_of_cell_lines_SCLC[2])
+which(vector==vector_of_cell_lines_SCLC[3])
+which(vector==vector_of_cell_lines_SCLC[4])
+which(vector==vector_of_cell_lines_SCLC[5])
+which(vector==vector_of_cell_lines_SCLC[6])
+which(vector==vector_of_cell_lines_SCLC[7])
+which(vector==vector_of_cell_lines_SCLC[8])
+
+#-> row of prism data set which belong to mesothelioma cell lines:
+
+cell_lines_SCLC=c(111, 279, 319, 346,348, 388, 402, 423)
+```
+
+
+```{r}
+# new data fram with SCLC cell lines with prism data
+
+prism_SCLC=prism[cell_lines_SCLC,]
+dim(prism_SCLC)
+```
+
+
+
+
+
+
 
 ```{r}
 ### have a look at NSCLC cell lines
@@ -38,6 +130,7 @@ p_lung=c(which(diseases=="Lung Cancer"))
 
 p_lung
 
+# number of lication of 
 which(p_lung==54)
 which(p_lung==57)
 which(p_lung==74)
@@ -77,34 +170,6 @@ dim(prism_NSCLC)
 # search for most effective drugs in SCLC cell lines
 prism_SCLC
 ```
-
-
-```{r}
-min=min(prism_SCLC, na.rm=TRUE)
-min
-which(prism_SCLC==min)
-which.min(prism_SCLC)
-prism[,86134]
-```
-
-
-```{r}
-vector_SCLC=as.list(prism_SCLC)
-which.min(vector_SCLC)
-```
-
-
-```{r}
-column=apply(prism_SCLC, 2, function(x){sum(is.na(x))})
-
-prism_SCLC_cleaned=prism_SCLC[,-which(column>10)]
-
-dim(prism_SCLC_cleaned)
-
-#-> NAs removen doesn´t make sense
-```
-
-
 ```{r}
 # look at mins rowwise
 min(prism_SCLC[1,], na.rm=TRUE)
@@ -137,25 +202,29 @@ which.min(prism_SCLC[7,])
 which.min(prism_SCLC[8,])
 ```
 ```{r}
-# most effective drugs on SCLC
-# BRD-K13810148-311-03-2::10::HTS002 
-                              3039 
-#BRD-A66419424-001-02-4::2.5::HTS002 
-                               1104 
-#BRD-K12867552-001-04-7::10::HTS002 
-                              2831 
-#BRD-K15409150-001-05-8::10::HTS002 
-                              3167 
-#BRD-K15409150-001-05-8::10::HTS002 
-                              3167 
-#BRD-K96104201-001-01-5::10::HTS002 
-                             10767 
+
 #BRD-K39484304-001-16-5::10::HTS002 
                               5447 
-#BRD-K96104201-001-01-5::10::HTS002 
-                             10767 
+#BRD-K68202742-001-16-5::10.5396::HTS002 
+                                   8159 
+#BRD-K51911221-001-01-2::2.5::HTS002 
+                               6616 
+#BRD-K15409150-001-05-8::10::HTS002 
+                              3167 
+#BRD-K53734668-003-02-0::10.6299::HTS002 
+                                   6791 
+#BRD-K60348325-065-09-9::10::HTS002 
+                              7359 
+#BRD-K35329391-334-01-7::10::HTS002 
+                              4991 
+#BRD-K47869605-001-32-0::10::HTS002 
+                              6159 
 ```
 #used doses: dose1, dose2, dose3, dose4, dose5, dose6, 10, 2.5
+
+##################################################
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ab hier alle Zahlen falsch:( mus  ich noch berichtigen
 ```{r}
 # first drug:BRD-K13810148-311-03-2::10::HTS002 
 
@@ -485,8 +554,6 @@ prism.treat[3401,8]
 prism.treat[3401,9]
 #-> schizophrenia
 ```
-
-```
 sum up information about drugs for SCLC:
 
 -> givinostat
@@ -494,6 +561,47 @@ sum up information about drugs for SCLC:
 -> PCI-24781
 -> azalomycin-b
 -> penfluridol
+```{r}
 
+```
+
+###################################################
+```{r}
+# now do the same for Mesothelioma cell lines
+diseases_subtype=prism.cl[, 21]
+
+p_Meso=c(which(diseases_subtype=="Mesothelioma"))
+p_Meso
+
+prism_Meso=prism[p_Meso,]
+dim(prism_Meso)
+```
+```{r}
+# 
+diseases=prism.cl[, 20]
+
+p_lung=c(which(diseases=="Lung Cancer"))
+
+p_lung
+
+which(p_lung==54)
+which(p_lung==57)
+which(p_lung==74)
+which(p_lung==136)
+which(p_lung==142)
+which(p_lung==144)
+which(p_lung==243)
+which(p_lung==273)
+which(p_lung==125)
+which(p_lung==286)
+which(p_lung==324)
+which(p_lung==350)
+which(p_lung==352)
+which(p_lung==390)
+which(p_lung==404)
+which(p_lung==425)
+```
+
+```
 
 
